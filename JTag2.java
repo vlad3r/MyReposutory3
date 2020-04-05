@@ -15,7 +15,19 @@ import javax.swing.*;
  */
 public class JTag2 {
     Thread thrd;
-    public static void shuffleArray(byte array [],String str []) { // случайная растановка элементов
+ public static int findSpace(byte s[]){
+ for (int i=0;i<s.length;i++){
+     if (s[i]==0){
+     if (i==0)
+         return 1;
+     else
+         return i/4+1;
+     }}
+    return -1;     
+ }    
+    public static void shuffleArray(byte array [],String str []) {
+        int N=1;// случайная растановка элементов
+        while(N%2!=0){
     for (int i = array.length - 1; i >= 0; i--) {
         byte j = (byte) Math.floor(Math.random() * (i + 1));
         byte temp = array[i];
@@ -23,11 +35,19 @@ public class JTag2 {
         array[j] = temp;
         //System.out.print(array[i]+" ");
         
-        if (array[i]!=0)
+       
        str[i]=Integer.toString(array[i]);
-       else
-           str[i]=" ";
+       
+           
+   
+            
     }
+     int k=0;
+    for(int i=0;i<15;i++)
+        if (Integer.parseInt(str[i])<Integer.parseInt(str[i+1]))
+            k++;
+    N=k+findSpace(array);
+        }
     
    
 }
@@ -156,12 +176,12 @@ jfr.setVisible(true);
         if (str[i].equals(jbtn[i].getText()))
             truecheck++;
             }
-    System.out.println("truecheck = "+truecheck);
+    
     if (truecheck==16) {
        
             System.exit(0);
         
-           // Logger.getLogger(JTag2.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
     }
     
@@ -216,6 +236,7 @@ WinFrame( JButton res,JButton ex){
 super();
 restart=res;
 exit=ex;
-
+C:\Users\Vlad\Documents\NetBeansProjects1\JTag2\src\jtag2
 }
 }*/
+
